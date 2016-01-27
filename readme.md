@@ -19,7 +19,7 @@ A) Create the plug-in binary with this command:
 
 B) Copy the file to your SonarQube installation:
 
-    copy target/deors.plugins.sonarqube.idemetadata-1.0.jar $SONARQUBE_HOME/extensions/plugins
+    copy target/padss-widget-1.0.jar $SONARQUBE_HOME/extensions/plugins
 
 C) Restart SonarQube
 
