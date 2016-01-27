@@ -1,0 +1,175 @@
+<%
+    def check_image(metric_or_measure)
+        html = ''
+
+        if metric_or_measure.is_a? ProjectMeasure
+            m = metric_or_measure
+        elsif @snapshot
+            m = @snapshot.measure(metric_or_measure)
+        end
+
+        if m.nil?
+            return ''
+        end
+
+        if m && m.metric
+            if m.value == 0
+                html = image_tag(url_for_static(:plugin => 'idemetadata', :path => 'check-round-yes-small.png'), :size => '16x16', :style => 'vertical-align:middle')
+            elsif
+                html = image_tag(url_for_static(:plugin => 'idemetadata', :path => 'check-round-no-small.png'), :size => '16x16', :style => 'vertical-align:middle')
+            end
+        end
+
+        html
+    end
+    def no_of_issues(metric_or_measure)
+      html = ''
+
+      if metric_or_measure.is_a? ProjectMeasure
+        m = metric_or_measure
+      elsif @snapshot
+        m = @snapshot.measure(metric_or_measure)
+      end
+
+      if m.nil?
+        return ''
+      end
+
+      if m && m.metric
+        html = m.value
+        # html = puts m.metric.to_yaml
+      end
+
+      html
+    end
+    def name(metric_or_measure)
+      html = ''
+
+      if metric_or_measure.is_a? ProjectMeasure
+        m = metric_or_measure
+      elsif @snapshot
+        m = @snapshot.measure(metric_or_measure)
+      end
+
+      if m.nil?
+        return ''
+      end
+
+      if m && m.metric
+        html = m.metric.description.to_yaml
+        # html = puts m.metric.to_yaml
+      end
+
+      html
+    end
+
+    def remove_brackets(metric_or_measure)
+        out = ''
+
+        if metric_or_measure.is_a? ProjectMeasure
+            m = metric_or_measure
+        elsif @snapshot
+            m = @snapshot.measure(metric_or_measure)
+        end
+
+        if m.nil?
+            return ''
+        end
+
+        if m && m.metric
+            out = m.data[1..-2]
+        end
+
+        out
+    end
+%>
+<div class="dashbox">
+
+</div>
+<div class="widget-span widget-span-6">
+    <div class="widget-measure-container">
+        <div class="widget-measure widget-measure-main">
+            <span class="widget-label">Payment Application Data Security Standard (PA DSS)</span>
+            <span class="nowrap">
+              All the checks related to PA DSS
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dashbox">
+    <table class="width100">
+        <tbody>
+            <tr>
+                <td style="width:100%; vertical-align:top; padding:0 30px 0 0;" >
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="thin nowrap">Status</th>
+                            <th class="thin nowrap">Description</th>
+                            <th class="thin nowrap">Files</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <%= check_image('ide_is_java') -%>
+                                </td>
+                                <td class="thin nowrap">
+                                    <span style="vertical-align:middle">1. <%= name('ide_is_java') -%></span>
+                                </td>
+                                <td>
+                                    <%= link_to no_of_issues('ide_is_java'),root_path -%>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= check_image('ide_is_ear') -%>
+                                </td>
+                                <td class="thin nowrap">
+                                    <span style="vertical-align:middle">2. <%= name('ide_is_ear') -%></span>
+                                </td>
+                                <td>
+                                    <%= link_to no_of_issues('ide_is_ear'),root_path -%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= check_image('ide_is_ejb') -%>
+                                </td>
+                                <td class="thin nowrap">
+                                    <span style="vertical-align:middle">3. <%= name('ide_is_ejb') -%>.</span>
+                                </td>
+                                <td>
+                                    <%= link_to no_of_issues('ide_is_ejb'),root_path -%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= check_image('ide_is_web') -%>
+                                </td>
+                                <td class="thin nowrap">
+                                    <span style="vertical-align:middle">4. <%= name('ide_is_web') -%></span>
+                                </td>
+                                <td>
+                                    <%= link_to no_of_issues('ide_is_web'),root_path -%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= check_image('ide_is_gwt') -%>
+                                </td>
+                                <td class="thin nowrap">
+                                    <span style="vertical-align:middle">5. <%= name('ide_is_gwt') -%></span>
+                                </td>
+                                <td>
+                                    <%= link_to no_of_issues('ide_is_gwt'),root_path -%>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
