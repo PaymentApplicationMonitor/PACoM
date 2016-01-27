@@ -1,15 +1,12 @@
-deors.plugins.sonarqube.idemetadata
+Payment Application Monitor Widget
 ===================================
 
-SonarQube IDE Metadata plugin gathers and displays information from IDE metadata files,
-including project type (based on natures/facets) and dependencies.
+SonarQube Payment Application Monitor Widget gathers and displays information related to PCI DSS.
 
 Introduction
 ------------
 
-This is an example of a simple SonarQube plug-in that declares a few metrics at the
-project level containing information extracted from IDE Metadata configuration files
-(currently only Eclipse IDE is supported but other extractors can be easily created).
+Payment application Monitor widget shows all the non compliencies related to PCI DSS
 
 To install this plug-in, follow these steps:
 
